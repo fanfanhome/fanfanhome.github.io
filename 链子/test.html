@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var length = 10;
+    function fn() {
+        console.log(this.length);
+    }
+    var obj = {
+        length: 5,
+        method: function (fn) {
+            fn();//函数调用，此时13行的this指向window，所以是10
+            arguments[0]();//此时this指向arguments，所以为3
+            arguments[0].call(this);//上下文调用模式，指向obj，所以为5
+        }
+    }
+    obj.method(fn,2,3);
+</script>
+</html>
